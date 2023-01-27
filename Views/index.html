@@ -1,0 +1,317 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <title>User Management</title>
+    <script src="../Scripts/jquery-3.4.1.min.js"></script>
+    <script src="../assets/plugins/jquery/jquery-3.2.1.min.js"></script>
+
+    <script src="../Scripts/bootstrap.bundle.min.js"></script>
+    <link href="../Content/bootstrap.min.css" rel="stylesheet">
+
+    <link href="../assets/plugins/CSS/style.css" rel="stylesheet" />
+
+    <script src="../Scripts/angular.min.js"></script>
+    <script src="../Scripts/angular-route.min.js"></script>
+    <script src="../Scripts/app.js"></script>
+
+    <link rel="stylesheet" href="../Content/all.min.css" />
+    <script src="../Scripts/umd/popper.min.js"></script>
+
+</head>
+<body ng-controller="glavniController">
+
+    <div class="container table-responsive" style="padding-left: 0;">
+        <!--    FORMA NOVI ZAPIS    -->
+        <div id="formaNoviZapis">
+            <form name="formaDodajZapis" method="POST">
+                <header>
+                    <h4 class="modal-title w-100 text-center"> Novi zapis</h4>
+                </header>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="input-group grupa1">
+                            <span class="input-group-text"> Ime</span>
+                            <input type="text" aria-label="Ime" class="form-control" ng-model="input_zapis_ime">
+                        </div>
+                        <div class="input-group grupa1">
+                            <span class="input-group-text">Prezime</span>
+                            <input type="text" aria-label="Prezime" class="form-control" ng-model="input_zapis_prezime">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-group grupa1">
+                            <span class="input-group-text">Datum Rođenja</span>
+                            <input type="date" aria-label="Datum Rodenja" class="form-control" ng-model="input_zapis_datumRodenja">
+                        </div>
+                        <div class="input-group mb-3 grupa2">
+                            <label class="input-group-text" for="selectSpol">Spol</label>
+                            <select class="form-select"
+                                    id="selectSpol"
+                                    type="text"
+                                    ng-model="option_zapis_spol"
+                                    ng-options="spol.Id as spol.Naziv for spol in aSpolovi">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-group grupa2">
+                            <span class="input-group-text"> Telefon</span>
+                            <input type="text" aria-label="Telefon" class="form-control" ng-model="input_zapis_telefon">
+                        </div>
+                        <div class="input-group grupa2">
+                            <span class="input-group-text"> Adresa</span>
+                            <input type="text" aria-label="Adresa" class="form-control" ng-model="input_zapis_adresa">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="center">
+            <div class="row">
+                <div class="col-md-2">
+                    <!--BUTTON ZA OTVARANJE MODALA DODAJ OSOBE-->
+                    <button ng-click="otvoriModalDodajOsobu()" id="btnDodajOsobu" class=" divSearchButton btn btn-dark" type="button">
+                        <span class="fas fa-plus"></span>
+                        Novi zapis
+                    </button>
+                </div>
+                <div class="col-md-3"
+                        <!--BUTTON RESET FORMU ZAPISA-->
+                        <button ng-click="ResetFormZapis()" id="btnResetZapisOsoba" class=" divSearchButton btn btn-dark" type="button">
+                            <span class="fas fa-plus"></span>
+                            Reset Formu Zapis
+                        </button>
+                </div>
+                <div class="col-md-2"
+                        <!--BUTTON SPRREMI ZAPIS-->
+                        <button ng-click="SpremiZapis()" id="btnSpremiZapisOsoba" class=" divSearchButton btn btn-success" type="button">
+                            <span class="fas fa-plus"></span>
+                            Spremi zapis
+                        </button>
+                </div>
+                <div class="col-md-2">
+                        <!--POLJE ZA PRETRAŽIVANJE OSOBA-->
+                        <div id="searchDiv" class="divSearchButton">
+                            <input type="text" ng-model="search" class="form-control" placeholder="Pretraži tablicu" />
+                        </div>
+                </div>
+            </div>    
+            </div>
+                <hr />
+
+                <!--tablica-->
+                <table id="tablicaOsoba" class="table" style="margin: 0 auto;">
+                    <thead>
+                        <tr>
+                            <th>Rbr</th>
+                            <th>Ime</th>
+                            <th>Prezime</th>
+                            <th>Datum rođenja</th>
+                            <th>Spol</th>
+                            <th>Telefon</th>
+                            <th>Adresa</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="osoba in aOsobe | filter: search ">
+                            <td>{{$index+1}}.</td>
+                            <td>{{osoba.Ime}}</td>
+                            <td>{{osoba.Prezime}}</td>
+                            <td>{{osoba.DatumRodenja}}</td>
+                            <td>{{osoba.Spol}}</td>
+                            <td>{{osoba.Telefon}}</td>
+                            <td>{{osoba.Adresa}}</td>
+                            <td><button class="btn btn-warning" ng-click="otvoriModalAzurirajOsobu(osoba.Id)"><span class="far fa-edit"></span></button></td>
+                            <td><button id="btnObrisi" class="btn btn-danger" ng-click="otvoriModalObrisiOsobu(osoba.Id)"><span class="fas fa-minus"></span></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+                <!-- MODAL NOVI ZAPIS-->
+                <div class="modal fade" id="ModalDodajOsobu">
+                    <div class="modal-dialog ">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title w-100 text-center"> Unos nove osobe</h4>
+                                <button type="button" class="btn btn-danger" ng-click="zatvoriModalDodajOsobu()" data-dismiss="modal">
+                                    &times;
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form name="formaDodajOsobu" method="POST">
+                                    <div class="input-group">
+                                        <span class="input-group-text"> Ime</span>
+                                        <input type="text" aria-label="Ime" class="form-control" ng-model="input_ime">
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-text">Prezime</span>
+                                        <input type="text" aria-label="Prezime" class="form-control" ng-model="input_prezime">
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-text">Datum Rođenja</span>
+                                        <input type="date" aria-label="Datum Rodenja" class="form-control" ng-model="input_datumRodenja">
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <label class="input-group-text" for="selectSpol">Spol</label>
+                                        <select class="form-select"
+                                                id="selectSpol"
+                                                type="text"
+                                                ng-model="option_spol"
+                                                ng-options="spol.Id as spol.Naziv for spol in aSpolovi">
+                                        </select>
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-text"> Telefon</span>
+                                        <input type="text" aria-label="Telefon" class="form-control" ng-model="input_telefon">
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-text"> Adresa</span>
+                                        <input type="text" aria-label="Adresa" class="form-control" ng-model="input_adresa">
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="submit" ng-click="DodajOsobu()" class="btn btn-success">
+                                            Spremi
+                                        </button>
+                                        <button type="button" class="btn btn-danger" ng-click="zatvoriModalDodajOsobu()" data-dismiss="modal">
+                                            Odustani
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- azuriraj Osobu-->
+                <div class="modal fade" id="ModalAzurirajOsobu">
+                    <div class="modal-dialog ">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title w-100 text-center"> Edit Forma</h4>
+                                <button type="button" class="btn btn-danger" ng-click="zatvoriModalAzurirajOsobu()" data-dismiss="modal">
+                                    &times;
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form name="formaAzurirajOsobu" method="POST">
+                                    <div class="input-group">
+                                        <span class="input-group-text"> Ime</span>
+                                        <input type="text" aria-label="Ime" class="form-control" ng-model="input_edit_ime">
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-text">Prezime</span>
+                                        <input type="text" aria-label="Prezime" class="form-control" ng-model="input_edit_prezime">
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-text">Datum Rođenja</span>
+                                        <input type="date" aria-label="Datum Rodenja" class="form-control" ng-model="input_edit_datumRodenja"
+                                               value="{{input_edit_datumRodenja}}">
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <label class="input-group-text" for="selectEditSpol">Spol</label>
+                                        <select class="form-select"
+                                                id="selectEditSpol"
+                                                type="text"
+                                                ng-model="option_edit_spol"
+                                                ng-options="spol.Id as spol.Naziv for spol in aSpolovi"
+                                                value={{option_edit_spol}}>
+                                        </select>
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-text"> Telefon</span>
+                                        <input type="text" aria-label="Telefon" class="form-control" ng-model="input_edit_telefon">
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-text"> Adresa</span>
+                                        <input type="text" aria-label="Adresa" class="form-control" ng-model="input_edit_adresa">
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="submit" ng-click="AzurirajOsobu()" class="btn btn-success">
+                                            Spremi
+                                        </button>
+                                        <button type="button" class="btn btn-danger" ng-click="zatvoriModalAzurirajOsobu()" data-dismiss="modal">
+                                            Odustani
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- OBRISI ZAPIS-->
+                <div class="modal fade" id="ModalObrisiOsobu">
+                    <div class="modal-dialog ">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title w-100 text-center"> Jeste li sigurni da želite ukloniti osobu</h4>
+                                <button type="button" class="btn btn-danger" ng-click="zatvoriModalObrisiOsobu()" data-dismiss="modal">
+                                    &times;
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form name="formaObrisiOsobu" method="POST">
+                                    <div class="input-group">
+                                        <span class="input-group-text"> Ime</span>
+                                        <input type="text" aria-label="Ime" class="form-control" ng-model="input_obrisi_ime" disabled>
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-text">Prezime</span>
+                                        <input type="text" aria-label="Prezime" class="form-control" ng-model="input_obrisi_prezime" disabled>
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-text">Datum Rođenja</span>
+                                        <input type="date" aria-label="Datum Rodenja" class="form-control" ng-model="input_obrisi_datumRodenja" disabled>
+                                    </div>
+                                    <div class="input-group">
+                                        <label class="input-group-text" for="selectDeleteSpol">Spol</label>
+                                        <select class="form-select"
+                                                id="selectDeleteSpol"
+                                                type="text"
+                                                class="form-control"
+                                                ng-model="option_obrisi_spol"
+                                                ng-options="spol.Id as spol.Naziv for spol in aSpolovi"
+                                                value={{option_obrisi_spol}}
+                                                disabled>
+                                        </select>
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-text"> Telefon</span>
+                                        <input type="text" aria-label="telefon" class="form-control" ng-model="input_obrisi_telefon" disabled>
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-text"> Adresa</span>
+                                        <input type="text" aria-label="Adresa" class="form-control" ng-model="input_obrisi_adresa" disabled>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" ng-click="obrisiOsobu()" class="btn btn-success">
+                                            Obriši
+                                        </button>
+                                        <button type="button" class="btn btn-danger" ng-click="zatvoriModalObrisiOsobu()" data-dismiss="modal">
+                                            Odustani
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+</body>
+<footer>
+    <br />
+    <br />
+    <br />
+</footer>
+</html>

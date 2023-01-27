@@ -1,0 +1,29 @@
+
+ULAZNA FORMA SADRŽI:
+
+-ulaznu formu gdje će biti HTML tablica s već unešenim podacima i u svakom redu button za edit tog zapisa,  +
+ klikom na njega otvara se edit forma s prikazom tog zapisa u poljima na edit formi   +
+
+-button za novi zapis  +
+ 
+
+EDIT FORMA SADRŽI:
+
+-polja ime, prezime, datum rođenja, adresa, broj telefona, i select box s izborom (muško, žensko) +
+
+-button spremi koji će spremiti zapis na backendu u json file  +
+
+ 
+
+BACKEND:
+
+-napravit u .net C# web API controller koji ima POST metodu koja prihvaća objekt tipa klase Osoba (klasa ima property-e Ime, Prezime, DatumRodenja, Telefon, Spol, Adresa, Id)
+
+-Id property u klasi osoba mora biti unique vrijednost, najbolje koristiti Guid
+
+-objekt Osoba koji je došao POST metodom spremiti u json file i svaki idući objekt(zapis) spremiti u taj isti json
+
+-napraviti u istom controlleru GET metodu koja prima parametar Id, pronaći u json file-u taj zapis i vratiti ga na frontend  +
+– ovo je slučaj kada kliknemo na edit zapisa u tablici na ulaznoj formi  +
+
+-napraviti u istom controlleru GET metodu koja vraća sve zapise na frontend i prikazuje ih u tablici na ulaznoj formi   +

@@ -1,0 +1,41 @@
+{
+  "osoba": [
+    {
+      "Id": "b138dc79-266c-d261-77d6-23c15fa54c1c",
+      "Ime": "Marino",
+      "Prezime": "Marić",
+      "DatumRodenja": "2023-12-30T23:00:00Z",
+      "Spol": 1,
+      "Telefon": "9809890",
+      "Adresa": "Vukovarska ulica 23"
+    },
+    {
+      "Id": "52362cbc-92b1-205c-b0cb-34e02a52bc10",
+      "Ime": "Marina",
+      "Prezime": "Anić",
+      "DatumRodenja": "1973-12-13T23:00:00Z",
+      "Spol": 2,
+      "Telefon": "0915277828",
+      "Adresa": "Antuna Mihanović 43"
+    },
+    {
+      "Id": "596828c3-0f0a-3533-3b0f-aada232f242e",
+      "Ime": "Silvio",
+      "Prezime": "Marinić",
+      "DatumRodenja": "1993-12-30T23:00:00Z",
+      "Spol": 1,
+      "Telefon": "091888182",
+      "Adresa": "Ardella dela Belle 3"
+    }
+  ],
+  "spol": [
+    {
+      "Id": 1,
+      "Naziv": "muško"
+    },
+    {
+      "Id": 2,
+      "Naziv": "žensko"
+    }
+  ]
+}
