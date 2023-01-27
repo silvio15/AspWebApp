@@ -1,6 +1,33 @@
 {
   "osoba": [
     {
+      "Id": "2e52a3e5-bb06-460c-8509-9c386d1c54b5",
+      "Ime": "Ana",
+      "Prezime": "Ivić",
+      "DatumRodenja": "1978-02-09T23:00:00Z",
+      "Spol": 2,
+      "Telefon": "0999876543",
+      "Adresa": "Eugena Kumičića 23"
+    },
+    {
+      "Id": "d9e54c5c-c59e-7904-c43e-49b052e190a6",
+      "Ime": "Marko",
+      "Prezime": "Jurić",
+      "DatumRodenja": "1999-12-18",
+      "Spol": 1,
+      "Telefon": "0998288822",
+      "Adresa": "Augusta Cesara 23"
+    },
+    {
+      "Id": "e3436fe1-1e9e-9a36-d852-604b13b70daa",
+      "Ime": "Anastasia",
+      "Prezime": "Požeg",
+      "DatumRodenja": "1982-04-01T23:00:00Z",
+      "Spol": 2,
+      "Telefon": "0918727728",
+      "Adresa": "Marka Marulića 98"
+    },
+    {
       "Id": "b138dc79-266c-d261-77d6-23c15fa54c1c",
       "Ime": "Marino",
       "Prezime": "Marić",
@@ -10,22 +37,40 @@
       "Adresa": "Vukovarska ulica 23"
     },
     {
-      "Id": "52362cbc-92b1-205c-b0cb-34e02a52bc10",
-      "Ime": "Marina",
-      "Prezime": "Anić",
-      "DatumRodenja": "1973-12-13T23:00:00Z",
+      "Id": "c9c999a7-1361-c398-da87-1c0092a01ab6",
+      "Ime": "Sanela",
+      "Prezime": "Kostrešević",
+      "DatumRodenja": "1996-03-19T23:00:00Z",
       "Spol": 2,
-      "Telefon": "0915277828",
-      "Adresa": "Antuna Mihanović 43"
+      "Telefon": "0977829929",
+      "Adresa": "Ulica 108 brigade 34"
     },
     {
-      "Id": "596828c3-0f0a-3533-3b0f-aada232f242e",
-      "Ime": "Silvio",
-      "Prezime": "Marinić",
-      "DatumRodenja": "1993-12-30T23:00:00Z",
+      "Id": "fb895bdd-4d1b-800f-d27d-c8c9d406a496",
+      "Ime": "Matej",
+      "Prezime": "Hill",
+      "DatumRodenja": "2002-11-12T23:00:00Z",
       "Spol": 1,
-      "Telefon": "091888182",
-      "Adresa": "Ardella dela Belle 3"
+      "Telefon": "095098889",
+      "Adresa": "Eugena Kumičića 9"
+    },
+    {
+      "Id": "daf485b9-f7ee-67f2-e543-6d909af83510",
+      "Ime": "mislav",
+      "Prezime": "javorek",
+      "DatumRodenja": "1997-07-17T22:00:00Z",
+      "Spol": 1,
+      "Telefon": "0921912929",
+      "Adresa": "mirka ilicica 2"
+    },
+    {
+      "Id": "05d34876-d253-799b-1dbd-6d941b2835a9",
+      "Ime": "Martina",
+      "Prezime": "Husnjak",
+      "DatumRodenja": "1989-11-27T23:00:00Z",
+      "Spol": 2,
+      "Telefon": "09982888288",
+      "Adresa": "Ulica Hrvatskih žrtava 102"
     }
   ],
   "spol": [

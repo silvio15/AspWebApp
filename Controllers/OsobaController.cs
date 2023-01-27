@@ -41,9 +41,18 @@ namespace AspWebApp.Controllers
             
             for (int i = 0; i < osobe.Count(); i++)
             {
-                date = (DateTime)osobe[i]["DatumRodenja"];
-                date = (DateTime)osobe[i]["DatumRodenja"];
-                formatted = Convert.ToDateTime(date).ToString("dd/MM/yyyy");
+                if ((string)osobe[i]["DatumRodenja"] == null || (string)osobe[i]["DatumRodenja"] == "" || (string)osobe[i]["DatumRodenja"] == "null")
+                {
+                    formatted = (string)osobe[i]["DatumRodenja"];
+                }
+                else
+                {
+                    date = (DateTime)osobe[i]["DatumRodenja"];
+                    formatted = Convert.ToDateTime(date).ToString("MM/dd/yyyy");
+                }
+
+                //date = (DateTime)osobe[i]["DatumRodenja"];
+                //formatted = Convert.ToDateTime(date).ToString("dd/MM/yyyy");
 
                 nSpol = (int)osobe[i]["Spol"];
                 spolNaziv = spolovi.Where(p => p.Id == nSpol).Select(p => p.Naziv).FirstOrDefault();
@@ -53,8 +62,10 @@ namespace AspWebApp.Controllers
                     Id = (Guid)osobe[i]["Id"],
                     Ime = (string)osobe[i]["Ime"],
                     Prezime = (string)osobe[i]["Prezime"],
-                    DatumRodenja = formatted,
-                    Spol = spolNaziv,
+                //DatumRodenja = (string)osobe[i]["DatumRodenja"],
+
+                DatumRodenja = formatted,
+                Spol = spolNaziv,
                     Telefon = (string)osobe[i]["Telefon"],
                     Adresa = (string)osobe[i]["Adresa"]
                 });
@@ -81,8 +92,15 @@ namespace AspWebApp.Controllers
 
             for (int i = 0; i < osobe.Count(); i++)
             {
-                date = (DateTime)osobe[i]["DatumRodenja"];
-                formatted = Convert.ToDateTime(date).ToString("MM/dd/yyyy");
+                if ((string)osobe[i]["DatumRodenja"] == null || (string)osobe[i]["DatumRodenja"] == "" || (string)osobe[i]["DatumRodenja"] == "null")
+                {
+                    formatted = (string)osobe[i]["DatumRodenja"];
+                }
+                else
+                {
+                    date = (DateTime)osobe[i]["DatumRodenja"];
+                    formatted = Convert.ToDateTime(date).ToString("MM/dd/yyyy");
+                }
 
                 if ((Guid)osobe[i]["Id"] == id)
                 {
@@ -92,6 +110,7 @@ namespace AspWebApp.Controllers
                         Id = (Guid)osobe[i]["Id"],
                         Ime = (string)osobe[i]["Ime"],
                         Prezime = (string)osobe[i]["Prezime"],
+                        //DatumRodenja = formatted,
                         DatumRodenja = formatted,
                         Spol = (int)osobe[i]["Spol"],
                         Telefon = (string)osobe[i]["Telefon"],

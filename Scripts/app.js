@@ -88,9 +88,9 @@ app.controller('glavniController', function ($scope, $http, $location, $timeout,
     // DODAVANJE OSOBE
     $scope.DodajOsobu = function () {
 
-        if ($scope.input_datumRodenja == undefined || $scope.input_datumRodenja == "") {
-            $scope.input_datumRodenja = new Date();
-        }
+        //if ($scope.input_datumRodenja == undefined || $scope.input_datumRodenja == "") {
+        //    $scope.input_datumRodenja = new Date();
+        //}
         var guid = CreateGuid();
             var osoba = {
                 Id:guid,
@@ -125,9 +125,9 @@ app.controller('glavniController', function ($scope, $http, $location, $timeout,
     // SPREMANJE ZAPISA
     $scope.SpremiZapis= function () {
 
-        if ($scope.input_zapis_datumRodenja == undefined || $scope.input_zapis_datumRodenja == "") {
-            $scope.input_zapis_datumRodenja = new Date();
-        }
+        //if ($scope.input_zapis_datumRodenja == undefined || $scope.input_zapis_datumRodenja == "") {
+        //    $scope.input_zapis_datumRodenja = new Date();
+        //}
         var guid = CreateGuid();
         var osoba = {
             Id: guid,
